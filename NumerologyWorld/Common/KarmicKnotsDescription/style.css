@@ -1,0 +1,25 @@
+/*********************************************************************************/
+/* Basic                                                                         */
+/*********************************************************************************/
+
+* {
+}
+
+body {
+    background-image: url("../../Images/WpEs6JE.png");
+    /*background-color: rgb(235, 235, 235);*/
+    font-family: Segoe UI;
+    font-size:14px;
+ 
+}
+
+h2 {
+    color: #000000;
+}
+
+#wrapper {
+    margin: 15px;
+    margin-left: 20px;
+     margin-bottom: 40px;
+    max-width: 700px;
+}

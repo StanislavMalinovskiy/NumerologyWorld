@@ -1,0 +1,1335 @@
+﻿<Page 
+    xmlns:Layout="using:DevExpress.UI.Xaml.Layout" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="Numerology.View.PersonalNumbersPage" 
+    xmlns:local="using:Numerology"
+    xmlns:viewModel="using:Numerology.ViewModel"
+    mc:Ignorable="d"  
+    x:Name="PersNumbersPage"
+    >
+
+    <Page.DataContext>
+        <viewModel:PersonalNumbersViewModel />
+    </Page.DataContext>
+
+    <Grid   >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/AccountsBackground.png" Stretch="Fill"   />
+        </Grid.Background>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Layout:SlideView  x:Name="SlideViewPersonalNumbers"  Background="Transparent" BorderThickness="0" IsSwipeEnabled="False" Padding="0,-20,0,0">
+
+            <Layout:SlideViewItem Header="Личные числа" HeaderTemplate="{StaticResource SlideViewItemHeaderTemplatePersonalNumbers}"
+            Margin="0,16,25,0" MinWidth="350" Width="690" KeyUp="Enter_KeyDown" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" KeyUp="Enter_KeyDown">
+                        <StackPanel Width="160" VerticalAlignment="Center" Margin="30,0,0,0" KeyUp="Enter_KeyDown">
+                            <TextBlock Margin="0,0,0,5" Text="Дата расчета:" Style="{StaticResource CustomerNumberLabelStyle}" />
+                        </StackPanel>
+
+                        <StackPanel Width="330" VerticalAlignment="Center" Margin="0,0,0,0" KeyUp="Enter_KeyDown">
+                            <DatePicker Width="330"  KeyUp="Enter_KeyDown"
+                                        Date="{Binding PersonalNumbers.CalcDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                            </DatePicker>
+                            <!--<Editors:DatePickerEdit Height="250"  Width="300"  AllowRoundOutOfRangeValue="True" 
+                                        
+                                        EditValue="{Binding TempCalcDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        />-->
+
+                            <!--<Editors:DateEdit x:Name="dtCalcDate" ShowNullText="False" ShowNullTextForEmptyValue="False" NullText="Введите дату"
+                                        IsTextEditable="False" EditValuePostDelay="0" EditValuePostMode="Immediate" 
+                                        EditValue="{Binding TempCalcDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Style="{StaticResource TextEditStyle}" >
+                                <Editors:DateEdit.PopupSettings>
+                                    <Editors:DateEditPopupSettings x:Name="settings" PopupAutoWidth="False"  />
+
+                                </Editors:DateEdit.PopupSettings>
+                            </Editors:DateEdit>-->
+                        </StackPanel>
+
+                        <StackPanel  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="30,0,0,0" KeyUp="Enter_KeyDown" >
+                            <Button  IsTabStop="True" x:Name="btnCalcPersonalNumber" Content="Вычислить" KeyUp="Enter_KeyDown"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Click="btnCalcPersonalNumber_Click"
+                        Command="{Binding CalcPersonalNumbersCommand}" Foreground="{StaticResource  BackgroundThemeBrush}"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1"  Margin="0,0,0,0" KeyUp="Enter_KeyDown"  >
+                        <Line X1="10" Y1="10" X2="680" Y2="10" Stroke="{StaticResource   BrightestFontColorThemeBrush}" StrokeThickness="2"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,0,0,0"  KeyUp="Enter_KeyDown">
+                        <StackPanel Width="150" VerticalAlignment="Center" Margin="25,5,0,0" KeyUp="Enter_KeyDown">
+                            <TextBlock  Text="Личный год:" Style="{StaticResource CustomerNumberLabelStyle}" />
+                        </StackPanel>
+
+                        <StackPanel Width="100" VerticalAlignment="Center" Margin="10,10,0,0" KeyUp="Enter_KeyDown" >
+                            <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                <TextBlock  Text="{Binding  PersonalNumbers.PersonalYearNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                VerticalAlignment="Center" HorizontalAlignment="Center"  
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                    <TextBlock.Transitions>
+                                        <TransitionCollection>
+                                            <AddDeleteThemeTransition/>
+                                        </TransitionCollection>
+                                    </TextBlock.Transitions>
+                                </TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3"  Margin="0,2,0,0"  KeyUp="Enter_KeyDown" >
+                        <Line X1="10" Y1="10" X2="680" Y2="10" Stroke="{StaticResource   BrightestFontColorThemeBrush}" StrokeThickness="2"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4"  Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10,15,0,0" KeyUp="Enter_KeyDown" >
+                        <Grid KeyUp="Enter_KeyDown">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Margin="0,0,0,0" Padding="0,0,0,0" Text="Январь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="1" Margin="0,0,0,0" Padding="0,0,0,0" Text="Февраль" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="2" Margin="0,0,0,0" Padding="0,0,0,0" Text="Март" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="3" Margin="0,0,0,0" Padding="0,0,0,0" Text="Апрель" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="4" Margin="0,0,0,0" Padding="0,0,0,0" Text="Май" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="5" Margin="0,0,0,0" Padding="0,0,0,0" Text="Июнь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+
+                            <StackPanel Grid.Row="1" Grid.Column="0"   Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="BtnMonth1"   Click="Button_Click"
+                                        Command="{Binding SelectMonthCommand}" CommandParameter="1"
+                                        Content="{Binding PersonalNumbers.JanuaryNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                        VerticalAlignment="Center"  HorizontalAlignment="Center" 
+                                        PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                        Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="1" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border   Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth2"  Click="Button_Click"               
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="2"
+                                              Content="{Binding PersonalNumbers.FebruaryNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                VerticalAlignment="Center"  HorizontalAlignment="Center" 
+                                            PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="2" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth3"  Click="Button_Click"            
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="3"
+                                              Content="{Binding PersonalNumbers.MarchNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="3" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth4"   Click="Button_Click"           
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="4"
+                                                Content="{Binding PersonalNumbers.AprilNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="4" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth5" Click="Button_Click"          
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="5"
+                                               Content="{Binding PersonalNumbers.MayNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}"                                         >
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="5" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth6" Click="Button_Click"             
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="6"
+                                             Content="{Binding PersonalNumbers.JuneNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5"  Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10,20,0,0" KeyUp="Enter_KeyDown" >
+                        <Grid KeyUp="Enter_KeyDown">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Margin="0,0,0,0" Padding="0,0,0,0" Text="Июль" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="1" Margin="0,0,0,0" Padding="0,0,0,0" Text="Август" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="2" Margin="0,0,0,0" Padding="0,0,0,0" Text="Сентябрь" Style="{StaticResource CustomerNumberLabelStyleCenter}"/>
+                            <TextBlock Grid.Column="3" Margin="0,0,0,0" Padding="0,0,0,0" Text="Октябрь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="4" Margin="0,0,0,0" Padding="0,0,0,0" Text="Ноябрь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="5" Margin="0,0,0,0" Padding="0,0,0,0" Text="Декабрь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+
+                            <StackPanel Grid.Row="1" Grid.Column="0" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth7" Click="Button_Click"   
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="7"
+                                              Content="{Binding PersonalNumbers.JulyNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="1" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth8"  Click="Button_Click"   
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="8"
+                                                    Content="{Binding PersonalNumbers.AugustNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="2" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth9" Click="Button_Click"   
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="9"
+                                               Content="{Binding PersonalNumbers.SeptemberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="3" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth10" Click="Button_Click"   
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="10"
+                                               Content="{Binding PersonalNumbers.OctoberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="4" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth11" Click="Button_Click"   
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="11"
+                                               Content="{Binding PersonalNumbers.NovemberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="5" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"    >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button x:Name="btnMonth12" Click="Button_Click"   
+                                            Command="{Binding SelectMonthCommand}" CommandParameter="12"
+                                               Content="{Binding PersonalNumbers.DecemberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      PointerEntered="Button_PointerEntered" PointerExited="Button_PointerExited"  
+                                      Style="{StaticResource MonthesStyle}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
+
+ 
+                    <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,20,0,0"  KeyUp="Enter_KeyDown">
+                        <StackPanel Width="250" VerticalAlignment="Center" Margin="25,5,0,0" KeyUp="Enter_KeyDown">
+                            <TextBlock  Text="Универсальные числа:" Style="{StaticResource CustomerNumberLabelStyle}" />
+                        </StackPanel>
+ 
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="8"  Margin="0,2,0,0"  KeyUp="Enter_KeyDown" >
+                        <Line X1="10" Y1="10" X2="680" Y2="10" Stroke="{StaticResource   BrightestFontColorThemeBrush}" StrokeThickness="2"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="9"  Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10,15,0,0" KeyUp="Enter_KeyDown" >
+                        <Grid KeyUp="Enter_KeyDown">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Margin="0,0,0,0" Padding="0,0,0,0" Text="Январь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="1" Margin="0,0,0,0" Padding="0,0,0,0" Text="Февраль" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="2" Margin="0,0,0,0" Padding="0,0,0,0" Text="Март" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="3" Margin="0,0,0,0" Padding="0,0,0,0" Text="Апрель" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="4" Margin="0,0,0,0" Padding="0,0,0,0" Text="Май" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="5" Margin="0,0,0,0" Padding="0,0,0,0" Text="Июнь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+
+                            <StackPanel Grid.Row="1" Grid.Column="0"   Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button  
+                                        Content="{Binding UniversalNumbers.JanuaryNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                        VerticalAlignment="Center"  HorizontalAlignment="Center" 
+                                        Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="1" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border   Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button     Content="{Binding UniversalNumbers.FebruaryNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                VerticalAlignment="Center"  HorizontalAlignment="Center" 
+                                Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="2" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button    Content="{Binding UniversalNumbers.MarchNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="3" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button  Content="{Binding UniversalNumbers.AprilNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="4" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button     Content="{Binding UniversalNumbers.MayNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center" 
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="5" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button  Content="{Binding UniversalNumbers.JuneNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="10"  Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10,20,0,0" KeyUp="Enter_KeyDown" >
+                        <Grid KeyUp="Enter_KeyDown">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Margin="0,0,0,0" Padding="0,0,0,0" Text="Июль" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="1" Margin="0,0,0,0" Padding="0,0,0,0" Text="Август" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="2" Margin="0,0,0,0" Padding="0,0,0,0" Text="Сентябрь" Style="{StaticResource CustomerNumberLabelStyleCenter}"/>
+                            <TextBlock Grid.Column="3" Margin="0,0,0,0" Padding="0,0,0,0" Text="Октябрь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="4" Margin="0,0,0,0" Padding="0,0,0,0" Text="Ноябрь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+                            <TextBlock Grid.Column="5" Margin="0,0,0,0" Padding="0,0,0,0" Text="Декабрь" Style="{StaticResource CustomerNumberLabelStyleCenter}" />
+
+                            <StackPanel Grid.Row="1" Grid.Column="0" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button  Content="{Binding UniversalNumbers.JulyNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="1" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button         Content="{Binding UniversalNumbers.AugustNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="2" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button      Content="{Binding UniversalNumbers.SeptemberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="3" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button      Content="{Binding UniversalNumbers.OctoberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="4" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button     Content="{Binding UniversalNumbers.NovemberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="5" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"    >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <Button      Content="{Binding PersonalNumbers.DecemberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalAlignment="Center"  HorizontalAlignment="Center"  
+                                      Style="{StaticResource MonthesStyleSimple}">
+                                        <Button.Transitions>
+                                            <TransitionCollection>
+                                                <ContentThemeTransition/>
+                                            </TransitionCollection>
+                                        </Button.Transitions>
+                                    </Button>
+                                </Border>
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
+                    
+                </Grid>
+
+            </Layout:SlideViewItem>
+
+            <Layout:SlideViewItem x:Name="DaysNumbersSlide" Header=" "  Margin="0,24,0,0"  MinWidth="200"  Width="600"
+             HeaderTemplate="{StaticResource  SlideViewItemHeaderTemplateCompare}"  Background="#40000000" KeyUp="Enter_KeyDown">
+
+                <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,42,0,0"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--<Border Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="#FF6A5EB0" BorderThickness="2"  />-->
+                    <Border Grid.RowSpan="10" Grid.ColumnSpan="6" BorderBrush="#FFE1DEF3" BorderThickness="2"  />
+
+                    <Border Grid.Row="0" Grid.Column="0" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="Число"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersHeaderStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+                    
+                    <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" BorderThickness="1" BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="Дни месяца"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersHeaderStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                    
+                    <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="1"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource DayNumbersLabelStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+                    
+                    <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="2"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource DayNumbersLabelStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+                    
+                    <Border Grid.Row="3" Grid.Column="0" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="3"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource DayNumbersLabelStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="4" Grid.Column="0" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="4"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource DayNumbersLabelStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="5" Grid.Column="0" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="5"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource DayNumbersLabelStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="6" Grid.Column="0" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="6"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource DayNumbersLabelStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="7" Grid.Column="0" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="7"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource DayNumbersLabelStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="8" Grid.Column="0" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="8"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource DayNumbersLabelStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="9" Grid.Column="0" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="9"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource DayNumbersLabelStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+                    <Border Grid.Row="1" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="2" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="3" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="4" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="5" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="6" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="7" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="8" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day8, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="9" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day9, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+                    <Border Grid.Row="1" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day10, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="2" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day11, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="3" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day12, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="4" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day13, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="5" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day14, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="6" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day15, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="7" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day16, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="8" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day17, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="9" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day18, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+                    <Border Grid.Row="1" Grid.Column="3" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day19, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="2" Grid.Column="3" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day20, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="3" Grid.Column="3" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day21, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="4" Grid.Column="3" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day22, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="5" Grid.Column="3" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day23, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="6" Grid.Column="3" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day24, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="7" Grid.Column="3" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day25, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="8" Grid.Column="3" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day26, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="9" Grid.Column="3" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day27, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+
+                    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+                    <Border Grid.Row="1" Grid.Column="4" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day28, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="2" Grid.Column="4" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day29, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="3" Grid.Column="4" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day30, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="4" Grid.Column="4" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day31, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="5" Grid.Column="4" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day32, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="6" Grid.Column="4" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day33, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="7" Grid.Column="4" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day34, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="8" Grid.Column="4" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day35, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="9" Grid.Column="4" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day36, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+                    <Border Grid.Row="1" Grid.Column="5" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day37, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="2" Grid.Column="5" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day38, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="3" Grid.Column="5" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day39, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="4" Grid.Column="5" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text="{Binding PersonalNumbers.Day40, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="5" Grid.Column="5" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock Text=""                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="6" Grid.Column="5" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock  Text=""                        
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="7" Grid.Column="5" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock  Text=""                         
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="8" Grid.Column="5" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock  Text=""                            
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="9" Grid.Column="5" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                        <TextBlock  Text=""                        
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition/>
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </Border>
+                    
+                </Grid>
+
+            </Layout:SlideViewItem>
+ 
+        </Layout:SlideView>
+
+    </Grid>
+
+</Page>

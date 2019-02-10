@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FF897BB-A341-4072-A1CD-954C5C077FEC}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Numerology</RootNamespace>
+    <AssemblyName>Numerology</AssemblyName>
+    <DefaultLanguage>ru-RU</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Numerology_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <AppxBundle>Auto</AppxBundle>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
+    <PackageCertificateThumbprint>FE911E2DD4DC1948C45834F9CEE003F03F58EDFE</PackageCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\UniversalNumbersCalculator.cs" />
+    <Compile Include="Common\PersonalNumbersCalculator.cs" />
+    <Compile Include="Common\NumMapCalculator.cs" />
+    <Compile Include="Common\DigitsConverter.cs" />
+    <Compile Include="Common\NavigationHelper.cs" />
+    <Compile Include="Common\ObservableDictionary.cs" />
+    <Compile Include="Common\RelayCommandWithPar.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CharCodes.cs" />
+    <Compile Include="Model\ChartsDataPoint.cs" />
+    <Compile Include="Model\UniversalNumbers.cs" />
+    <Compile Include="Model\PersonalNumbers.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\CompareNumerologicalMap.cs" />
+    <Compile Include="Model\NumerologicalMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\PersonalNumbersViewModel.cs" />
+    <Compile Include="ViewModel\CustomersViewModel.cs" />
+    <Compile Include="ViewModel\NumerologicalMapViewModel.cs" />
+    <Compile Include="View\PersonalNumbersPage.xaml.cs">
+      <DependentUpon>PersonalNumbersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NumerologicalMapPage.xaml.cs">
+      <DependentUpon>NumerologicalMapPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomersPage.xaml.cs">
+      <DependentUpon>CustomersPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-180.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Common\DaysDescription\Day1.html" />
+    <Content Include="Common\DaysDescription\Day10.html" />
+    <Content Include="Common\DaysDescription\Day11.html" />
+    <Content Include="Common\DaysDescription\Day12.html" />
+    <Content Include="Common\DaysDescription\Day13.html" />
+    <Content Include="Common\DaysDescription\Day14.html" />
+    <Content Include="Common\DaysDescription\Day15.html" />
+    <Content Include="Common\DaysDescription\Day16.html" />
+    <Content Include="Common\DaysDescription\Day17.html" />
+    <Content Include="Common\DaysDescription\Day18.html" />
+    <Content Include="Common\DaysDescription\Day19.html" />
+    <Content Include="Common\DaysDescription\Day2.html" />
+    <Content Include="Common\DaysDescription\Day20.html" />
+    <Content Include="Common\DaysDescription\Day21.html" />
+    <Content Include="Common\DaysDescription\Day22.html" />
+    <Content Include="Common\DaysDescription\Day23.html" />
+    <Content Include="Common\DaysDescription\Day24.html" />
+    <Content Include="Common\DaysDescription\Day25.html" />
+    <Content Include="Common\DaysDescription\Day26.html" />
+    <Content Include="Common\DaysDescription\Day27.html" />
+    <Content Include="Common\DaysDescription\Day28.html" />
+    <Content Include="Common\DaysDescription\Day29.html" />
+    <Content Include="Common\DaysDescription\Day3.html" />
+    <Content Include="Common\DaysDescription\Day30.html" />
+    <Content Include="Common\DaysDescription\Day31.html" />
+    <Content Include="Common\DaysDescription\Day4.html" />
+    <Content Include="Common\DaysDescription\Day5.html" />
+    <Content Include="Common\DaysDescription\Day6.html" />
+    <Content Include="Common\DaysDescription\Day7.html" />
+    <Content Include="Common\DaysDescription\Day8.html" />
+    <Content Include="Common\DaysDescription\Day9.html" />
+    <Content Include="Common\DaysDescription\style.css" />
+    <Content Include="Common\KarmicKnotsDescription\num_10.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_11.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_12.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_13.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_14.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_15.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_16.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_17.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_18.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_19.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_2.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_1.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_20.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_21.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_22.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_3.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_4.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_5.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_6.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_7.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_8.html" />
+    <Content Include="Common\KarmicKnotsDescription\num_9.html" />
+    <Content Include="Common\KarmicKnotsDescription\style.css" />
+    <Content Include="Images\AccountsBackground.png" />
+    <Content Include="Images\WpEs6JE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Common\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Common\CommonColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PersonalNumbersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\NumerologicalMapPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CustomersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="DevExpress.Controls, Version=14.1">
+      <Name>DevExpress.Controls</Name>
+    </SDKReference>
+    <SDKReference Include="DevExpress.Core, version=14.1">
+      <Name>DevExpress.Core</Name>
+    </SDKReference>
+    <SDKReference Include="DevExpress.Data, Version=14.1">
+      <Name>DevExpress.Data</Name>
+    </SDKReference>
+    <SDKReference Include="DevExpress.Visualization, Version=14.1">
+      <Name>DevExpress.Visualization</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ntk.snk" />
+    <None Include="Numerology_TemporaryKey.pfx" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ntk.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

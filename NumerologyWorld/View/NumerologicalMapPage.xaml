@@ -1,0 +1,882 @@
+﻿<Page 
+    xmlns:Charts="using:DevExpress.UI.Xaml.Charts" 
+    x:Class="Numerology.View.NumerologicalMapPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Numerology"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Layout="using:DevExpress.UI.Xaml.Layout"
+    xmlns:Editors="using:DevExpress.UI.Xaml.Editors"
+    xmlns:viewModel="using:Numerology.ViewModel"
+    xmlns:common="using:Numerology.Common"
+    xmlns:xaml="using:DevExpress.UI.Xaml"
+    mc:Ignorable="d" NavigationCacheMode="Enabled"  
+    >
+
+    <!--Width="2500"-->
+    <Page.Resources>
+        <viewModel:NumerologicalMapViewModel x:Key="NumerologicalMapViewModel" />
+        <common:DigitsConverter x:Key="DigitsConverter" />
+    </Page.Resources>
+
+    <Grid DataContext="{StaticResource NumerologicalMapViewModel}" >
+        <Grid.Background>
+            <ImageBrush  ImageSource="/Images/AccountsBackground.png" Stretch="Fill"   />
+        </Grid.Background>
+        <!--<Border Background="#10000000" Width="600" HorizontalAlignment="Left" >
+            <TextBlock Text="Numerology World" Style="{StaticResource HeaderStyle}"/>
+        </Border>-->
+
+        <Layout:SlideView  x:Name="SlideView"  Background="Transparent" BorderThickness="0" IsSwipeEnabled="False">
+            
+            <Layout:SlideViewItem Header="Персональные данные" HeaderTemplate="{StaticResource SlideViewItemHeaderTemplate}"
+            Margin="0,6,0,0"   MinWidth="650"  >
+                <Grid  VerticalAlignment="Top"  >
+                    <Layout:LayoutControl Orientation="Vertical" >
+
+                        <Layout:LayoutGroup>
+                            <Layout:LayoutGroup Orientation="Vertical" Width="300">
+                                <Layout:LayoutItem Header="Фамилия:" HeaderPosition="Top" Required="True" FontSize="24" Style="{StaticResource LayoutItemStyle}"  >
+                                    <Editors:TextEdit x:Name="txtLastName" TabIndex="0" EditValue="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        AllowNullInput="False" KeyUp="Enter_KeyDown"  Loaded="txtLastName_Loaded"   Style="{StaticResource TextEditStyle}"  />
+                                </Layout:LayoutItem>
+  
+                                <Layout:LayoutItem Header="Имя:" HeaderPosition="Top" Required="True" Style="{StaticResource LayoutItemStyle}"  >
+                                    <Editors:TextEdit x:Name="txtFirstName" EditValue="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                                    Style="{StaticResource TextEditStyle}" KeyUp="Enter_KeyDown"  />
+                                </Layout:LayoutItem>
+                            </Layout:LayoutGroup>
+
+
+                            <Layout:LayoutGroup Orientation="Vertical" Width="300">
+                                <Layout:LayoutItem Header="Отчество:" HeaderPosition="Top" Required="True" Style="{StaticResource LayoutItemStyle}"  >
+                                    <Editors:TextEdit x:Name="txtSecondName" EditValue="{Binding SecondName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                                    Style="{StaticResource TextEditStyle}" KeyUp="Enter_KeyDown"  />
+                                </Layout:LayoutItem>
+
+                                <!--KeyUp="dtBirthDate_KeyUp"-->
+                                <Layout:LayoutItem Header="Дата рождения:" HeaderPosition="Top" Required="True" Style="{StaticResource LayoutItemStyle}"  >
+                                    <DatePicker  x:Name="dtBirthDate"
+                                        Date="{Binding BirthDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                    </DatePicker>
+                                    <!--<Editors:DateEdit x:Name="dtBirthDate" ShowNullText="False" ShowNullTextForEmptyValue="False" NullText="Введите дату"
+                                        IsTextEditable="False" EditValuePostDelay="0" EditValuePostMode="Immediate" 
+                                        EditValue="{Binding BirthDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Style="{StaticResource TextEditStyle}"  >
+                                        <Editors:DateEdit.PopupSettings>
+                                            <Editors:DateEditPopupSettings x:Name="settings" PopupAutoWidth="False"  PopupClosed="DateEditPopupSettings_PopupClosed" />
+                                        </Editors:DateEdit.PopupSettings>
+                                    </Editors:DateEdit>-->
+                                    
+                                </Layout:LayoutItem>
+                            </Layout:LayoutGroup>
+                        </Layout:LayoutGroup>
+
+                        <Layout:LayoutGroup Header="Дополнительная информация"    HeaderStyle="{StaticResource LayoutGroupHeaderStyle}"  >
+                            <Layout:LayoutGroup Orientation="Vertical" Width="300" >
+                                <Layout:LayoutItem Header="Мобильный телефон:" HeaderPosition="Top" Required="True" Style="{StaticResource LayoutItemStyle}"  >
+                                    <Editors:TextEdit x:Name="txtMobile"  KeyUp="Enter_KeyDown" EditValue="{Binding MobilePhone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                                    Style="{StaticResource TextEditStyle}"   HasValidationError="{Binding MobileNumHasError,Mode=TwoWay}" ValidateOnTextInput="True"   >
+                                        <Editors:TextEdit.TextInputSettings>
+                                            <Editors:TextInputMaskSettings 
+                            Mask="+(999) 00 000-00-00" 
+                            MaskType="Simple" 
+                            IgnoreBlank="True"
+                            SaveLiteral="True"/>
+                                        </Editors:TextEdit.TextInputSettings>
+                                    </Editors:TextEdit>
+                                </Layout:LayoutItem>
+
+                                <Layout:LayoutItem Header="Домашний телефон:" HeaderPosition="Top" Required="True" Style="{StaticResource LayoutItemStyle}"  >
+                                    <Editors:TextEdit x:Name="txtHome"   KeyUp="Enter_KeyDown" EditValue="{Binding HomePhone, Mode=TwoWay}"
+                                                      Style="{StaticResource TextEditStyle}" HasValidationError="{Binding HomeNumHasError,Mode=TwoWay}" ValidateOnTextInput="True"   >
+                                        <Editors:TextEdit.TextInputSettings>
+                                            <Editors:TextInputMaskSettings 
+                            Mask="+(999) 00 000-00-00" 
+                            MaskType="Simple" 
+                            IgnoreBlank="True"
+                            SaveLiteral="True"/>
+                                        </Editors:TextEdit.TextInputSettings>
+                                    </Editors:TextEdit>
+                                </Layout:LayoutItem>
+                            </Layout:LayoutGroup>
+
+                            <Layout:LayoutGroup Orientation="Vertical" Width="300">
+                                <Layout:LayoutItem Header="Email" HeaderStringFormat="{}{0}:" Required="True" HeaderPosition="Top"
+                                Style="{StaticResource LayoutItemStyle}"  >
+                                    <Editors:TextEdit x:Name="txtEmail"  KeyUp="Enter_KeyDown" EditValue="{Binding  Email, Mode=TwoWay}"
+                                   Style="{StaticResource TextEditStyle}"  HasValidationError="{Binding EmailHasError,Mode=TwoWay}"  ValidateOnTextInput="True"   >
+                                        <Editors:TextEdit.TextInputSettings    >
+                                            <Editors:TextInputMaskSettings        
+                                                Mask="[a-z0-9._%-]+@[a-z0-9.-]+\.[a-z]{2,4}"   UseAsDisplayFormat="False"
+                                                MaskType="RegEx" IgnoreBlank="True" SaveLiteral="True"/>
+                                        </Editors:TextEdit.TextInputSettings>
+                                    </Editors:TextEdit>
+                                </Layout:LayoutItem>
+                            </Layout:LayoutGroup>
+                        </Layout:LayoutGroup>
+
+                        <Layout:LayoutGroup  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,22,0"    >
+                            <Button IsTabStop="True"  x:Name="btnCalc" Content="Вычислить" Command="{Binding CalculateCommand}" Tapped="btnCalc_Tapped" Click="btnCalc_Click" 
+                                Foreground="{StaticResource  BackgroundThemeBrush}"/>
+                        </Layout:LayoutGroup>
+
+                        <Grid Margin="20,113,20,0" >
+                            <Grid.Background>
+                                <ImageBrush  ImageSource="/Images/WpEs6JE.png" />
+                            </Grid.Background>
+
+                            <WebView Width="604" Height="auto" MinHeight="200" x:Name="WebWiewDayDescription2"  Margin="-20,0,-20,0"
+                        Source="{Binding KarmicKnotsDescriptionSource, Mode=OneWay}" DefaultBackgroundColor="{StaticResource BackgroundThemeColor}" />
+                        </Grid>
+                        
+                    </Layout:LayoutControl>
+                </Grid>
+            </Layout:SlideViewItem>
+
+            <Layout:SlideViewItem x:Name="AnaliseSlideViewItem" Header="Нумерологический анализ" HeaderTemplate="{StaticResource SlideViewItemHeaderTemplate}"
+            Margin="0,6,0,0" MinWidth="600"    >
+                <Grid SizeChanged="Grid_SizeChanged"   >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel  Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="#40000000" >
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,15,0,0" >
+                            <StackPanel Width="250" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Число жизненного пути" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="150" VerticalAlignment="Center" Margin="0,0,0,0"  >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.LifePathNumber, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+
+                            <ToggleSwitch   Margin="8,10,0,0" Padding="0,0,0,0"  IsEnabled="{Binding CalcIsComplete}"  RequestedTheme="Dark" 
+                            IsOn="{Binding CalcLifePathSeparately, Mode=TwoWay}" Header="Вычислять раздельно"  Style="{StaticResource ToggleSwitchStyle}" />
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,-10,0,0" >
+                           
+                            <StackPanel Width="250" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Число души"   Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="150" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.SoulNumber, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                                   
+                                VerticalAlignment="Center" HorizontalAlignment="Center"  
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+
+                            
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,5,0,0" >
+                            <StackPanel Width="250" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Число личности"  Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="150" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.IdentityNumber, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" >
+                            <StackPanel Width="250" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Число судьбы" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="150" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.DestinyNumber, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" >
+                            <StackPanel Width="250" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Число зрелости" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="150" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.MaturityNumber, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,10" >
+                            <StackPanel Width="250" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="День рождения" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel Width="150" VerticalAlignment="Center" Margin="0,0,0,0" >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock  Text="{Binding NumerologicalMap.DayOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"  
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                    </StackPanel>-->
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,10" >
+                            <StackPanel Width="250" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Число роста" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel Width="150" VerticalAlignment="Center" Margin="0,0,0,0" >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock  Text="{Binding NumerologicalMap.GrowthNumber, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"  
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,-5,0,10" >
+                            <StackPanel Width="250" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Денежное число" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel Width="150" VerticalAlignment="Center" Margin="0,0,0,0" >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock  Text="{Binding NumerologicalMap.CashNumber, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"  
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,-5,0,10" >
+                            <StackPanel Width="250" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="НК" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel Width="150" VerticalAlignment="Center" Margin="0,0,0,0" >
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock  Text="{Binding NumerologicalMap.NumerologyCode, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"  
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                    </StackPanel>
+
+                    <Grid  Grid.Row="1"  Margin="0,0,0,0"  >
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/Images/WpEs6JE.png" />
+                        </Grid.Background>
+
+                        <WebView Width="604" x:Name="WebWiewDayDescription"   Height="auto" MinHeight="200"  Margin="0,0,0,0"  
+                        Source="{Binding BirthDayDescriptionSource, Mode=OneWay}" DefaultBackgroundColor="{StaticResource BackgroundThemeColor}" />
+                    </Grid>
+
+                </Grid>
+
+            </Layout:SlideViewItem>
+
+            <Layout:SlideViewItem Margin="0,6,0,21" Background="{StaticResource  BackgroundThemeBrush}" Header="Диаграммы" 
+            HeaderTemplate="{StaticResource SlideViewItemChartsHeaderTemplate}"   MinWidth="700"    >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Диаграмма жизненной силы" HorizontalAlignment="Center" FontSize="20" 
+                    Foreground="{StaticResource PageHeaderFontThemeBrush}" FontWeight="Normal"  FontFamily="Segoe UI"   VerticalAlignment="Bottom" Margin="0,0,0,15" />
+
+                    <Charts:CartesianChart Grid.Row="1" HorizontalAlignment="Stretch" RequestedTheme="Dark" 
+				ToolTipEnabled="True"  VerticalAlignment="Stretch" Margin="10,0,10,0" AnimateOnLoading="True" Foreground="DarkSlateBlue">
+                        <Charts:CartesianChart.Palette>
+                            <Charts:CustomPalette >
+                                <Charts:CustomPalette.Colors>
+                                    <Color>DarkSlateBlue</Color>
+                                </Charts:CustomPalette.Colors>
+                            </Charts:CustomPalette>
+                        </Charts:CartesianChart.Palette>
+
+                        <Charts:CartesianChart.AxisX>
+                            <Charts:AxisX DateTimeGridAlignment="Year"
+                     DateTimeMeasureUnit="Year"  
+                     ShowLine="True" ShowLabels="True" ShowMajorGridlines="True"  GridSpacing="12" GridSpacingAuto="False" >
+
+                                <Charts:AxisX.LabelOptions>
+                                    <Charts:AxisLabelOptions FontSize="12"  />
+                                </Charts:AxisX.LabelOptions>
+
+                            </Charts:AxisX>
+                        </Charts:CartesianChart.AxisX>
+
+                        <Charts:CartesianChart.AxisY>
+                            <Charts:AxisY >
+                                <Charts:AxisY.LabelOptions>
+                                    <Charts:AxisLabelOptions FontSize="12" />
+                                </Charts:AxisY.LabelOptions>
+                                <Charts:AxisY.Title>
+                                    <Charts:AxisTitle Content="Значения" Visible="False"  Foreground="Black"/>
+                                </Charts:AxisY.Title>
+                            </Charts:AxisY>
+
+                        </Charts:CartesianChart.AxisY>
+
+                        <Charts:Series>
+
+                            <Charts:Series.View >
+                                <Charts:LineSeriesView ShowMarkers="True" ShowLabels="True"  DataChangingAnimationMode="AnimateEntireSeries"  >
+                                    <Charts:LineSeriesView.SeriesAnimation>
+                                        <Charts:LineSlideFromLeftAnimation Duration="0:0:2"/>
+                                    </Charts:LineSeriesView.SeriesAnimation>
+                                    <Charts:LineSeriesView.PointAnimation>
+                                        <Charts:MarkerSlideFromLeftBottomCornerAnimation Duration="0:0:1.5"/>
+                                    </Charts:LineSeriesView.PointAnimation>
+                                </Charts:LineSeriesView>
+                            </Charts:Series.View>
+
+                            <Charts:Series.Data >
+
+                                <Charts:DataSourceAdapter DataSource="{Binding  LifeStraightChartItemsSource,Mode=TwoWay}">
+                                    <Charts:DataMember DataMemberType="Argument" ColumnName="PointArgument" ScaleType="Auto"/>
+                                    <Charts:DataMember DataMemberType="Value" ColumnName="PointValue"  ScaleType="Numerical"  />
+                                </Charts:DataSourceAdapter>
+                            </Charts:Series.Data>
+                        </Charts:Series>
+
+                    </Charts:CartesianChart>
+
+                    <TextBlock Grid.Row="2" Text="Диаграмма удачных лет жизни" HorizontalAlignment="Center" FontSize="20" 
+                    Foreground="{StaticResource PageHeaderFontThemeBrush}" FontWeight="Normal"  FontFamily="Segoe UI"  VerticalAlignment="Bottom"  Margin="0,0,0,15" />
+
+                    <Charts:CartesianChart Grid.Row="3" HorizontalAlignment="Stretch"  
+				ToolTipEnabled="True"  VerticalAlignment="Stretch" Margin="10,0,10,20" AnimateOnLoading="True" Foreground="SlateBlue">
+                        <Charts:CartesianChart.Palette>
+                            <Charts:CustomPalette >
+                                <Charts:CustomPalette.Colors>
+                                    <Color>DarkSlateBlue</Color>
+                                </Charts:CustomPalette.Colors>
+                            </Charts:CustomPalette>
+                        </Charts:CartesianChart.Palette>
+
+                        <Charts:CartesianChart.AxisX>
+                            <Charts:AxisX DateTimeGridAlignment="Year"
+                     DateTimeMeasureUnit="Year"   
+                     ShowLine="True" ShowLabels="True" ShowMajorGridlines="True"  GridSpacing="10" GridSpacingAuto="False" >
+
+                                <Charts:AxisX.LabelOptions>
+                                    <Charts:AxisLabelOptions FontSize="12" />
+                                </Charts:AxisX.LabelOptions>
+
+                            </Charts:AxisX>
+                        </Charts:CartesianChart.AxisX>
+
+                        <Charts:CartesianChart.AxisY>
+                            <Charts:AxisY>
+                                <Charts:AxisY.LabelOptions>
+                                    <Charts:AxisLabelOptions FontSize="12" />
+                                </Charts:AxisY.LabelOptions>
+                                <Charts:AxisY.Title>
+                                    <Charts:AxisTitle Content="Значения" Visible="False"  Foreground="Black"/>
+                                </Charts:AxisY.Title>
+                            </Charts:AxisY>
+
+                        </Charts:CartesianChart.AxisY>
+
+                        <Charts:Series>
+                            <Charts:Series.View >
+                                <Charts:LineSeriesView ShowMarkers="True" ShowLabels="True"  DataChangingAnimationMode="AnimateEntireSeries" >
+                                    <Charts:LineSeriesView.SeriesAnimation>
+                                        <Charts:LineSlideFromLeftAnimation Duration="0:0:2"/>
+                                    </Charts:LineSeriesView.SeriesAnimation>
+                                    <Charts:LineSeriesView.PointAnimation>
+                                        <Charts:MarkerSlideFromLeftBottomCornerAnimation Duration="0:0:1.5"/>
+                                    </Charts:LineSeriesView.PointAnimation>
+                                </Charts:LineSeriesView>
+                            </Charts:Series.View>
+
+                            <Charts:Series.Data >
+
+                                <Charts:DataSourceAdapter DataSource="{Binding  SuccessfulYearsChartItemsSource}">
+                                    <Charts:DataMember DataMemberType="Argument" ColumnName="PointArgument" ScaleType="Auto"/>
+                                    <Charts:DataMember DataMemberType="Value" ColumnName="PointValue"  ScaleType="Numerical"  />
+                                </Charts:DataSourceAdapter>
+                            </Charts:Series.Data>
+                        </Charts:Series>
+
+                        <Charts:Series   >
+                            <Charts:Series.View  >
+                                <Charts:LineSeriesView ColorEach="True" ShowMarkers="false" ShowLabels="false" DataChangingAnimationMode="AnimateEntireSeries" 
+                                                >
+                                    
+                                        <Charts:LineSeriesView.StrokeStyle>
+                                            <xaml:StrokeStyle   DashArray="4,4" DashOffset="0"  Thickness="2"     />
+                                        </Charts:LineSeriesView.StrokeStyle>
+ 
+                                    <!--<Charts:LineSeriesView.LabelOptions>
+                                        <Charts:SeriesLabelOptions  Background="Green" FontSize="8"/>
+                                    </Charts:LineSeriesView.LabelOptions>-->
+                                    
+                                    <Charts:LineSeriesView.SeriesAnimation>
+                                        <Charts:LineSlideFromLeftAnimation Duration="0:0:2"/>
+                                    </Charts:LineSeriesView.SeriesAnimation>
+                                    <Charts:LineSeriesView.PointAnimation>
+                                        <Charts:MarkerSlideFromLeftBottomCornerAnimation Duration="0:0:1.5"/>
+                                    </Charts:LineSeriesView.PointAnimation>
+                                </Charts:LineSeriesView>
+                            </Charts:Series.View>
+
+                            <Charts:Series.Data >
+
+                                <Charts:DataSourceAdapter DataSource="{Binding  DemandLevelChartItemsSource}">
+                                    <Charts:DataMember DataMemberType="Argument" ColumnName="PointArgument" ScaleType="Auto"/>
+                                    <Charts:DataMember DataMemberType="Value" ColumnName="PointValue"  ScaleType="Numerical"  />
+                                </Charts:DataSourceAdapter>
+                            </Charts:Series.Data>
+                        </Charts:Series>
+                    </Charts:CartesianChart>
+                </Grid>
+            </Layout:SlideViewItem>
+
+            <Layout:SlideViewItem Margin="0,6,0,0" Header="Циклы / Пики" HeaderTemplate="{StaticResource SlideViewItemHeaderTemplate}" MinWidth="460" Background="#40000000" >
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="#40000000" >
+
+                    <Layout:LayoutGroup Orientation="Vertical" Margin="0,0,0,0" Header="Циклы" HeaderStyle="{StaticResource LayoutGroupCycleHeaderStyle}"
+                    Padding="0" HorizontalAlignment="Left">
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,4,0,0" >
+                            <StackPanel Width="190" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Формирующий"   Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="220" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.FirstCycle, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                                   
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,5,0,0" >
+                            <StackPanel Width="190" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Продуктивный"  Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="220" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.SecondCycle, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" >
+                            <StackPanel Width="190" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Итоговый" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="220" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.ThirdCycle, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Layout:LayoutGroup>
+
+                    <Layout:LayoutGroup   Orientation="Vertical" Margin="0,0,0,0" Header="Пики" HeaderStyle="{StaticResource LayoutGroupCycleHeaderStyle}"
+                    Padding="0,0,0,0" HorizontalAlignment="Left">
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,4,0,0" >
+                            <StackPanel Width="190" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Первый"   Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="220" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.FirstPeak, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                                   
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,5,0,0" >
+                            <StackPanel Width="190" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Второй"  Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="220" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.SecondPeak, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" >
+                            <StackPanel Width="190" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Третий" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="220" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.ThirdPeak, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0" >
+                            <StackPanel Width="190" VerticalAlignment="Center" Margin="30,0,0,0">
+                                <TextBlock Margin="0,0,0,5" Text="Четвертый" Style="{StaticResource CustomerNumberLabelStyle}" />
+                            </StackPanel>
+
+                            <StackPanel  Width="220" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.FourthPeak, Mode=OneWay, Converter={StaticResource DigitsConverter}}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Layout:LayoutGroup>
+
+                    <Layout:LayoutGroup   Orientation="Vertical" Margin="0,0,0,0" Header="Проблемы" HeaderStyle="{StaticResource LayoutGroupCycleHeaderStyle}"
+                    Padding="0,0,0,0" HorizontalAlignment="Left">
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,4,0,0" >
+
+                            <StackPanel  Width="97" VerticalAlignment="Center" Margin="30,0,4,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.FirstProblemNumber, Mode=OneWay}"                                   
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource  CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel   Width="97"        Margin="4,0,4,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top" >
+                                    <TextBlock Text="{Binding NumerologicalMap.SecondProblemNumber, Mode=OneWay}"               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel  Width="96" VerticalAlignment="Center" Margin="4,0,4,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.ThirdProblemNumber, Mode=OneWay}"                                   
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel  Width="96" VerticalAlignment="Center" Margin="4,0,4,0">
+                                <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding NumerologicalMap.FourthProblemNumber, Mode=OneWay}"                                   
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                        <TextBlock.Transitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                            </TransitionCollection>
+                                        </TextBlock.Transitions>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+
+
+
+                    </Layout:LayoutGroup>
+
+                </StackPanel>
+            </Layout:SlideViewItem>
+
+            <Layout:SlideViewItem Margin="0,6,0,0" Header="Психоматрица" HeaderTemplate="{StaticResource SlideViewItemHeaderTemplate}" Width="450" Background="#40000000"   >
+                <Grid Background="#40000000" Margin="0,0,0,0"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,56,0,0"  Grid.Row="0"     >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="90" />
+                            <RowDefinition Height="90"/>
+                            <RowDefinition Height="90"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="90"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--<Border Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="#FF6A5EB0" BorderThickness="2"  />-->
+                        <Border Grid.RowSpan="3" Grid.ColumnSpan="3" BorderBrush="#FFE1DEF3" BorderThickness="2"  />
+ 
+                        <Border Grid.Row="0" Grid.Column="0" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                            <TextBlock Text="{Binding NumerologicalMap.TopLeftPsychoNumber, Mode=OneWay}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                <TextBlock.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </TextBlock.Transitions>
+                            </TextBlock>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="1" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                            <TextBlock Text="{Binding NumerologicalMap.TopCenterPsychoNumber, Mode=OneWay}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                <TextBlock.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </TextBlock.Transitions>
+                            </TextBlock>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                            <TextBlock Text="{Binding NumerologicalMap.TopRightPsychoNumber, Mode=OneWay}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                <TextBlock.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </TextBlock.Transitions>
+                            </TextBlock>
+                        </Border>
+
+
+                        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="#FFE1DEF3"  >
+                            <TextBlock Text="{Binding NumerologicalMap.CenterLeftPsychoNumber, Mode=OneWay}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                <TextBlock.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </TextBlock.Transitions>
+                            </TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="#FFE1DEF3"  >
+                            <TextBlock Text="{Binding NumerologicalMap.CenterPsychoNumber, Mode=OneWay}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                <TextBlock.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </TextBlock.Transitions>
+                            </TextBlock>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="2" BorderThickness="1"  BorderBrush="#FFE1DEF3"  >
+                            <TextBlock Text="{Binding NumerologicalMap.CenterRightPsychoNumber, Mode=OneWay}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                <TextBlock.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </TextBlock.Transitions>
+                            </TextBlock>
+                        </Border>
+
+
+                        <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="#FFE1DEF3"  >
+                            <TextBlock Text="{Binding NumerologicalMap.BottomLeftPsychoNumber, Mode=OneWay}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                <TextBlock.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </TextBlock.Transitions>
+                            </TextBlock>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="#FFE1DEF3"  >
+                            <TextBlock Text="{Binding NumerologicalMap.BottomCenterPsychoNumber, Mode=OneWay}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                <TextBlock.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </TextBlock.Transitions>
+                            </TextBlock>
+                        </Border>
+                        <Border Grid.Row="2" Grid.Column="2" BorderThickness="1" BorderBrush="#FFE1DEF3"  >
+                            <TextBlock Text="{Binding NumerologicalMap.BottomRightPsychoNumber, Mode=OneWay}"                               
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Style="{StaticResource CustomerNumbersStyle}">
+                                <TextBlock.Transitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition/>
+                                    </TransitionCollection>
+                                </TextBlock.Transitions>
+                            </TextBlock>
+                        </Border>
+
+                    </Grid>
+
+
+
+                    <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="35,3,0,0"   Grid.Row="1"  >
+                        <TextBlock HorizontalAlignment="Left" Margin="0,0,0,0" Style="{StaticResource CustomerNumberLabelStyle}" Text="{Binding NumerologicalMap.FirstRowPsychomatrix, Mode=OneWay}"/>
+                        <TextBlock Margin="0,0,0,0" Style="{StaticResource CustomerNumberLabelStyle}" Text="{Binding NumerologicalMap.SecondRowPsychomatrix, Mode=OneWay}"/>
+                    </StackPanel>
+
+
+                </Grid>
+            </Layout:SlideViewItem>
+
+        </Layout:SlideView>
+    </Grid>
+
+</Page>

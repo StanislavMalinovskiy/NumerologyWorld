@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="46801StanislavMalinovskiy.NumerologyWorld" Publisher="CN=Stanislav" Version="1.1.0.29" />
+  <Identity Name="46801StanislavMalinovskiy.NumerologyWorld" Publisher="CN=Stanislav" Version="1.1.0.31" />
   <Properties>
     <DisplayName>Numerology World</DisplayName>
     <PublisherDisplayName>Stanislav Malinovskiy</PublisherDisplayName>

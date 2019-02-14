@@ -89,7 +89,7 @@ namespace Numerology.ViewModel
             PersonalNumbers.DecemberNumber = _personalNumbersCalculator.GetMonthNum(12);
 
             RaisePropertyChanged("PersonalNumbers");
-            //FirstPerson = null;
+            //FirstPerson = nullCalculateUniversalNumbers
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Numerology.ViewModel
         /// </summary>
         private void CalculateUniversalNumbers()
         {
-            _universalNumbersCalculator = new UniversalNumbersCalculator(UniversalNumbers.CalcDate.Date, true);
+            _universalNumbersCalculator = new UniversalNumbersCalculator(PersonalNumbers.CalcDate.Date, true);
 
             UniversalNumbers.UniversalYearNumber = _universalNumbersCalculator.GetUniversalYearNumber();
 

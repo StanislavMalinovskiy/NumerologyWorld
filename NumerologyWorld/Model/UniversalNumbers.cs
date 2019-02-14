@@ -24,23 +24,7 @@ namespace Numerology.Model
 
         private int _selectedMonth;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
-        /// <summary>
-        /// Дата расчета
-        /// </summary>
-        public DateTimeOffset CalcDate
-        {
-            get
-            {
-                return _calcDate;
-            }
-            set
-            {
-                _calcDate = value;
-                OnPropertyChanged("CalcDate");
-            }
-        }
-
+    
         public string UniversalYearNumber
         {
             get

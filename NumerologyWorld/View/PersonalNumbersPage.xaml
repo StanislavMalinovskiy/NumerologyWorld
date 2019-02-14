@@ -407,8 +407,7 @@
 
                             <StackPanel Grid.Row="1" Grid.Column="0"   Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
                                 <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
-                                    <Button  
-                                        Content="{Binding UniversalNumbers.JanuaryNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                    <Button Content="{Binding UniversalNumbers.JanuaryNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                                         VerticalAlignment="Center"  HorizontalAlignment="Center" 
                                         Style="{StaticResource MonthesStyleSimple}">
                                         <Button.Transitions>
@@ -521,7 +520,7 @@
 
                             <StackPanel Grid.Row="1" Grid.Column="0" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
                                 <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
-                                    <Button  Content="{Binding UniversalNumbers.JulyNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                    <Button  Content="{Binding UniversalNumbers.JulyNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       VerticalAlignment="Center"  HorizontalAlignment="Center"  
                                       Style="{StaticResource MonthesStyleSimple}">
                                         <Button.Transitions>
@@ -535,7 +534,7 @@
 
                             <StackPanel Grid.Row="1" Grid.Column="1" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"  >
                                 <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
-                                    <Button         Content="{Binding UniversalNumbers.AugustNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                    <Button         Content="{Binding UniversalNumbers.AugustNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                       VerticalAlignment="Center"  HorizontalAlignment="Center"  
                                       Style="{StaticResource MonthesStyleSimple}">
                                         <Button.Transitions>
@@ -591,7 +590,7 @@
 
                             <StackPanel Grid.Row="1" Grid.Column="5" Width="100" VerticalAlignment="Center" Margin="5,5,5,-5"    >
                                 <Border Background="{StaticResource BackgroundBlueThemeBrush}" VerticalAlignment="Top">
-                                    <Button      Content="{Binding PersonalNumbers.DecemberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                    <Button      Content="{Binding UniversalNumbers.DecemberNumber, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                                       VerticalAlignment="Center"  HorizontalAlignment="Center"  
                                       Style="{StaticResource MonthesStyleSimple}">
                                         <Button.Transitions>

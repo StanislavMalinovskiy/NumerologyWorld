@@ -447,13 +447,13 @@
                             </Charts:AxisX>
                         </Charts:CartesianChart.AxisX>
 
-                        <Charts:CartesianChart.AxisY>
-                            <Charts:AxisY>
+                        <Charts:CartesianChart.AxisY >
+                            <Charts:AxisY MinorCount="3" ShowMinorGridlines="True"  >
                                 <Charts:AxisY.LabelOptions>
                                     <Charts:AxisLabelOptions FontSize="12" />
                                 </Charts:AxisY.LabelOptions>
                                 <Charts:AxisY.Title>
-                                    <Charts:AxisTitle Content="Значения" Visible="False"  Foreground="Black"/>
+                                    <Charts:AxisTitle Content="Значения" Visible="False"  Foreground="Black" />
                                 </Charts:AxisY.Title>
                             </Charts:AxisY>
 

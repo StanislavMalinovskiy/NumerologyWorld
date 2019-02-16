@@ -1040,52 +1040,52 @@ namespace Numerology.Common
         {
             int month = 1;
             int result;
-
+            int birthDate = DayOfBirthNum;
+             
             if (BirthDate != null)
             {
                 month = BirthDate.Value.Month;
             }
 
 
-            if (DayOfBirthNum > 0 && month > 0)
+            if (birthDate > 0 && month > 0)
             {
-                if (DayOfBirthNum == 30 && month == 2)
+                if (birthDate == 30 && month == 2)
                 {
                     return "Нет данных";
                 }
 
-                if (DayOfBirthNum == 31 && month == 2)
+                if (birthDate == 31 && month == 2)
                 {
                     return "Нет данных";
                 }
 
-                if (DayOfBirthNum == 31 && month == 4)
+                if (birthDate == 31 && month == 4)
                 {
                     return "Нет данных";
                 }
 
-                if (DayOfBirthNum == 31 && month == 6)
+                if (birthDate == 31 && month == 6)
                 {
                     return "Нет данных";
                 }
 
-                if (DayOfBirthNum == 31 && month == 9)
+                if (birthDate == 31 && month == 9)
                 {
                     return "Нет данных";
                 }
 
-                if (DayOfBirthNum == 31 && month == 11)
+                if (birthDate == 31 && month == 11)
                 {
                     return "Нет данных";
                 }
 
-                if (DayOfBirthNum >=24)
+                if (birthDate >= 24)
                 {
-                    DayOfBirthNum = DayOfBirthNum - 22;
+                    birthDate = birthDate - 22;
                 }
                  
-
-                result = Math.Abs(DayOfBirthNum - month);
+                result = Math.Abs(birthDate - month);
             }
             else
             {

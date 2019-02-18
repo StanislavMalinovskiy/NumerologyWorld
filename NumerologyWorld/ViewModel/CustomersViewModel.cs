@@ -1077,22 +1077,7 @@ namespace Numerology.ViewModel
 
             if (num.Contains("/"))
             {
-                //if (num.Contains("1/10"))
-                //{
-                //    return 1;
-                //}
-                //if (num.Contains("10/1"))
-                //{
-                //    return 1;
-                //}
-                //if (num.Contains("19/10"))
-                //{
-                //    return 1;
-                //}
-                //else
-                //{
-                return Convert.ToInt32(num.Substring(3, 1));
-                //}            
+                return Convert.ToInt32(num.Substring(3, 1));        
             }
 
             if (num.Length > 1)

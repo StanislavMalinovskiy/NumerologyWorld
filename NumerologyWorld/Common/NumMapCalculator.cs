@@ -970,7 +970,7 @@ namespace Numerology.Common
         }
 
 
-        public int GetLongNaturalNumberInt(int num)
+        public int GetNaturalNumberIntWithoutCutting(int num)
         {
             int numVal = 0;
 
@@ -987,15 +987,7 @@ namespace Numerology.Common
             {
                 numVal = num;
             }
-
-
-            if (Convert.ToString(numVal).Contains("0") & numVal != 0)
-            {
-                string numValStr = Convert.ToString(numVal);
-                numValStr = numValStr.Replace("0", "");
-                numVal = Convert.ToInt16(numValStr);
-            }
-
+ 
             return numVal;
         }
 
@@ -1196,7 +1188,7 @@ namespace Numerology.Common
                 lsNumber = Convert.ToInt16(dayAndMonthNumStr) * BirthDate.Value.Year;
             }
 
-            Double t1 = GetLongNaturalNumberInt(lsNumber);
+            Double t1 = GetNaturalNumberIntWithoutCutting(lsNumber);
             Double t2 = lsNumber.ToString().Length;
 
             Double demandLevel = t1 / t2; // 01.09.2019 add new chartArgument
